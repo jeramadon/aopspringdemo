@@ -1,0 +1,17 @@
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+target/springmvcdemo-1.0-SNAPSHOT/
+target/maven-archiver/pom.properties
+nbactions.xml
+nb-configuration.xml
+
+*.class
+
+*.jar
+*.war
+*.ear
+*.dpf
+.netbeans_automatic_build
