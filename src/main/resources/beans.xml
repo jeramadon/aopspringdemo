@@ -11,25 +11,6 @@
 
     <context:annotation-config />
     <context:component-scan base-package="de.ebf.aopspringdemo" />    
-        
-    <bean id="camera"
-          class="de.ebf.aopspringdemo.Camera"
-    >
-    </bean>
-
-    <bean id="logger"
-          class="de.ebf.aopspringdemo.Logger"
-    >
-    </bean>
-
-    <aop:config>
-        <aop:pointcut id="camerasnap"
-                      expression="execution(void de.ebf.aopspringdemo.Camera.snap())" />
-        <aop:aspect id="loggeraspect"
-                    ref="logger">
-            <aop:before pointcut-ref="camerasnap"
-                        method="onWillTakePhoto" />            
-        </aop:aspect>
-    </aop:config>    
+    <aop:aspectj-autoproxy />
 
 </beans>

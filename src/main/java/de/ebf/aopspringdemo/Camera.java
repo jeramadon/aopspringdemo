@@ -7,11 +7,13 @@
 package de.ebf.aopspringdemo;
 
 import de.ebf.aopspringdemo.utilities.Utilities;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author jerryamadon
  */
+@Component
 public class Camera {
     
     public void snap() {
