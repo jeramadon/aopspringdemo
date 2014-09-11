@@ -21,12 +21,30 @@ import org.springframework.stereotype.Component;
 public class Logger {
 
     // reusable pointcut, otherwise put the pointcut execution line direct in @Before
-    @Pointcut("execution(void de.ebf.aopspringdemo.Camera.snap())")
+    @Pointcut("execution(void de.ebf.aopspringdemo.camera.Camera.*(..))")
     public void cameraSnap() {        
+    }
+    
+    @Pointcut("execution(* de.ebf.aopspringdemo.camera.Camera.snap(String))")
+    public void cameraSnapWithName() {        
+    }
+    
+    @Pointcut("execution(* *.*(..))")
+    public void cameraRelatedAction() {        
     }
     
     @Before("cameraSnap()")
     public void onWillTakePhoto() {
         Utilities.writeToConsole("photo will be taken...");
+    }    
+    
+    @Before("cameraSnapWithName()")
+    public void onWillTakePhotoWithName() {
+        Utilities.writeToConsole("photo will be taken with name...");
+    }    
+    
+    @Before("cameraRelatedAction()")
+    public void onWillDoCameraRelatedAction() {
+        Utilities.writeToConsole("camera action activated...");
     }    
 }
