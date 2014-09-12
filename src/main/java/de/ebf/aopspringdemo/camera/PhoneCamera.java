@@ -19,4 +19,8 @@ public class PhoneCamera {
     public void snap() {
         Utilities.writeToConsole("snap! (phone)");
     }    
+    
+    public void snapNight() {
+        Utilities.writeToConsole("snap! (night)");
+    }        
 }

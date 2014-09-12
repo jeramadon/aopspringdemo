@@ -28,6 +28,7 @@ public class App {
     private static void cameraActions_Tutorial_80() {
         PhoneCamera phoneCamera = (PhoneCamera)appContext.getBean("phoneCamera");
         phoneCamera.snap();
+        phoneCamera.snapNight();
     }
     
     private static void cameraActions_Tutorial_79() {

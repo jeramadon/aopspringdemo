@@ -10,8 +10,8 @@ package de.ebf.aopspringdemo.camera;
  *
  * @author jerryamadon
  */
+//  for aspects when interface needed to instantiate bean
 public interface ICamera {
-    //  for aspects when interface needed
 
     void snap();
 

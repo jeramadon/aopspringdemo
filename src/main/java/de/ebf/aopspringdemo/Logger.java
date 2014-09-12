@@ -40,6 +40,10 @@ public class Logger {
     public void phoneCameraSnap() {        
     }
     
+    @Pointcut("within(de.ebf.aopspringdemo.camera.PhoneCamera)")
+    public void phoneCameraAll() {        
+    }
+    
     @Before("cameraSnap()")
     public void onWillTakePhoto() {
         Utilities.writeToConsole("photo will be taken...");
@@ -68,6 +72,11 @@ public class Logger {
         } catch(Throwable e) {            
         }
         Utilities.writeToConsole("phone photo taken (around).");
+    }    
+    
+    @Before("phoneCameraAll()")
+    public void onPhoneCameraAction() {
+        Utilities.writeToConsole("phone camera action...");
     }    
     
   /*    
