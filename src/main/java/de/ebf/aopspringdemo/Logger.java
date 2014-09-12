@@ -41,7 +41,15 @@ public class Logger {
     }
     
     @Pointcut("within(de.ebf.aopspringdemo.camera.PhoneCamera)")
-    public void phoneCameraAll() {        
+    public void phoneCameraAllWithin() {        
+    }
+    
+    @Pointcut("target(de.ebf.aopspringdemo.camera.PhoneCamera)")
+    public void phoneCameraAllTarget() {        
+    }
+    
+    @Pointcut("this(de.ebf.aopspringdemo.camera.ICamera)")
+    public void phoneCameraAllThis() {        
     }
     
     @Before("cameraSnap()")
@@ -74,15 +82,23 @@ public class Logger {
         Utilities.writeToConsole("phone photo taken (around).");
     }    
     
-    @Before("phoneCameraAll()")
-    public void onPhoneCameraAction() {
-        Utilities.writeToConsole("phone camera action...");
+    @Before("phoneCameraAllWithin()")
+    public void onPhoneCameraActionWithin() {
+        Utilities.writeToConsole("phone camera action within...");
     }    
     
-  /*    
+    @Before("phoneCameraAllTarget()")
+    public void onPhoneCameraActionTarget() {
+        Utilities.writeToConsole("phone camera action target...");
+    }    
+    
+    @Before("phoneCameraAllThis()")
+    public void onPhoneCameraActionThis() {
+        Utilities.writeToConsole("phone camera action this...");
+    }    
+    
     @Before("cameraRelatedAction()")
     public void onWillDoCameraRelatedAction() {
         Utilities.writeToConsole("camera action activated...");
     } 
-//  */    
 }
