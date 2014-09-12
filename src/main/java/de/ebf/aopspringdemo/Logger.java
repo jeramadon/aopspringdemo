@@ -7,6 +7,9 @@
 package de.ebf.aopspringdemo;
 
 import de.ebf.aopspringdemo.utilities.Utilities;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -20,7 +23,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class Logger {
 
-    // reusable pointcut, otherwise put the pointcut execution line direct in @Before
+    // reusable pointcut, otherwise put pointcut execution line direct in @Before
     @Pointcut("execution(void de.ebf.aopspringdemo.camera.Camera.*(..))")
     public void cameraSnap() {        
     }
@@ -33,6 +36,10 @@ public class Logger {
     public void cameraRelatedAction() {        
     }
     
+    @Pointcut("execution(void de.ebf.aopspringdemo.camera.PhoneCamera.snap())")
+    public void phoneCameraSnap() {        
+    }
+    
     @Before("cameraSnap()")
     public void onWillTakePhoto() {
         Utilities.writeToConsole("photo will be taken...");
@@ -43,8 +50,30 @@ public class Logger {
         Utilities.writeToConsole("photo will be taken with name...");
     }    
     
+    @Before("phoneCameraSnap()")
+    public void onWillTakePhonePhoto() {
+        Utilities.writeToConsole("phone photo will be taken...");
+    }    
+    
+    @After("phoneCameraSnap()")
+    public void onDidTakePhonePhoto() {
+        Utilities.writeToConsole("phone photo taken.");
+    }    
+    
+    @Around("phoneCameraSnap()")
+    public void onWillAndDidTakePhonePhoto(ProceedingJoinPoint proceedingJoinPoint) {
+        Utilities.writeToConsole("phone photo will be taken (around)...");
+        try {
+            proceedingJoinPoint.proceed();
+        } catch(Throwable e) {            
+        }
+        Utilities.writeToConsole("phone photo taken (around).");
+    }    
+    
+  /*    
     @Before("cameraRelatedAction()")
     public void onWillDoCameraRelatedAction() {
         Utilities.writeToConsole("camera action activated...");
-    }    
+    } 
+//  */    
 }

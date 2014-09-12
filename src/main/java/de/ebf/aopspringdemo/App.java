@@ -8,6 +8,7 @@ package de.ebf.aopspringdemo;
 
 import de.ebf.aopspringdemo.accessories.Lens;
 import de.ebf.aopspringdemo.camera.Camera;
+import de.ebf.aopspringdemo.camera.PhoneCamera;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,8 +18,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
     
+    private static ApplicationContext appContext;
+    
     public static void main(String[] args) {        
-        ApplicationContext appContext = new ClassPathXmlApplicationContext("beans.xml");
+        appContext = new ClassPathXmlApplicationContext("beans.xml");
+        cameraActions_Tutorial_80();
+    }
+    
+    private static void cameraActions_Tutorial_80() {
+        PhoneCamera phoneCamera = (PhoneCamera)appContext.getBean("phoneCamera");
+        phoneCamera.snap();
+    }
+    
+    private static void cameraActions_Tutorial_79() {
         Camera camera = (Camera)appContext.getBean("camera");
         camera.snap();
         camera.snap(1000);
@@ -26,5 +38,5 @@ public class App {
         camera.snapNight();
         Lens lens = (Lens)appContext.getBean("lens");
         lens.zoom(5);
-    }   
+    }
 }
