@@ -9,6 +9,7 @@ package de.ebf.aopspringdemo;
 import de.ebf.aopspringdemo.accessories.Lens;
 import de.ebf.aopspringdemo.camera.Camera;
 import de.ebf.aopspringdemo.camera.ICamera;
+import de.ebf.aopspringdemo.camera.OldCamera;
 import de.ebf.aopspringdemo.camera.PhoneCamera;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -27,9 +28,15 @@ public class App {
     }
     
     private static void cameraActions_Tutorial_80() {
-        ICamera phoneCamera = (ICamera)appContext.getBean("phoneCamera");
+        OldCamera oldCamera = (OldCamera)appContext.getBean("oldCamera");
+        oldCamera.snap();
+        
+        ICamera phoneCamera = (ICamera)appContext.getBean("phoneCamera");        
+        phoneCamera.migrateCamera(oldCamera);
         phoneCamera.snap();
-        phoneCamera.snapNight();
+        phoneCamera.snap("Mosel");
+        phoneCamera.snap(1000);        
+        phoneCamera.snap(1.8, 2000);
     }
     
     private static void cameraActions_Tutorial_79() {

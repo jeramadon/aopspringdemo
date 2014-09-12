@@ -52,6 +52,38 @@ public class Logger {
     public void phoneCameraAllThis() {        
     }
     
+    @Pointcut("within(@Deprecated de.ebf.aopspringdemo.camera..*)")
+    public void deprecatedCameraAction() {        
+    }
+    
+    @Pointcut("@target(org.springframework.stereotype.Component)")
+    public void atTargetComponentAction() {        
+    }
+    
+    @Pointcut("@annotation(java.lang.Deprecated)")
+    public void deprecatedAction() {        
+    }
+    
+    @Pointcut("@args(org.springframework.stereotype.Component)")
+    public void componentArgumentAction() {        
+    }
+    
+    @Pointcut("@args(java.lang.Deprecated)")
+    public void deprecatedArgumentAction() {        
+    }
+    
+    @Pointcut("bean(*Camera)")
+    public void cameraBeanAction() {        
+    }
+    
+    @Pointcut("args()")
+    public void noArgumentAction() {        
+    }
+    
+    @Pointcut("args(Double, ..)")
+    public void doubleArgumentAction() {        
+    }
+    
     @Before("cameraSnap()")
     public void onWillTakePhoto() {
         Utilities.writeToConsole("photo will be taken...");
@@ -100,5 +132,45 @@ public class Logger {
     @Before("cameraRelatedAction()")
     public void onWillDoCameraRelatedAction() {
         Utilities.writeToConsole("camera action activated...");
+    } 
+    
+    @Before("deprecatedCameraAction()")
+    public void onDeprecatedCameraAction() {
+        Utilities.writeToConsole("deprecated camera action...");
+    } 
+    
+    @Before("atTargetComponentAction()")
+    public void onAtTargetComponentAction() {
+        Utilities.writeToConsole("component action...");
+    } 
+    
+    @Before("deprecatedAction()")
+    public void onDeprecatedAction() {
+        Utilities.writeToConsole("deprecated action...");
+    } 
+    
+    @Before("componentArgumentAction()")
+    public void onComponentArgumentAction() {
+        Utilities.writeToConsole("component argument action...");
+    } 
+    
+    @Before("deprecatedArgumentAction()")
+    public void onDeprectedArgumentAction() {
+        Utilities.writeToConsole("deprecated argument action...");
+    } 
+    
+    @Before("cameraBeanAction()")
+    public void onCameraBeanAction() {
+        Utilities.writeToConsole("camera bean action...");
+    } 
+    
+    @Before("noArgumentAction()")
+    public void onNoArgumentAction() {
+        Utilities.writeToConsole("no argument action...");
+    } 
+    
+    @Before("doubleArgumentAction()")
+    public void onDoubleArgumentAction() {
+        Utilities.writeToConsole("double argument action...");
     } 
 }

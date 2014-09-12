@@ -27,6 +27,11 @@ public class PhoneCamera implements ICamera {
     }    
     
     @Override
+    public void snap(double fstop, int exposure) {
+        Utilities.writeToConsole("snap! fstop = " + fstop +  " exposure = " + exposure);
+    }    
+    
+    @Override
     public void snapNight() {
         Utilities.writeToConsole("snap! (night)");
     }    
@@ -36,4 +41,9 @@ public class PhoneCamera implements ICamera {
         Utilities.writeToConsole("snap! name = " + photoName);
         return photoName;
     }    
+
+    @Override
+    public void migrateCamera(OldCamera oldCamera) {        
+        Utilities.writeToConsole("migrating camera!");
+    }
 }

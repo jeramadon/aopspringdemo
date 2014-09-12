@@ -16,9 +16,13 @@ public interface ICamera {
     void snap();
 
     void snap(int exposure);
+    
+    void snap(double fstop, int exposure);
 
     String snap(String photoName);
 
     void snapNight();
+
+    public void migrateCamera(OldCamera oldCamera);
     
 }

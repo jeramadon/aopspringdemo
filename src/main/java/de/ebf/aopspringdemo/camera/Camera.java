@@ -24,6 +24,11 @@ public class Camera implements ICamera {
     @Override
     public void snap(int exposure) {
         Utilities.writeToConsole("snap! exposure = " + exposure);
+    }        
+    
+    @Override
+    public void snap(double fstop, int exposure) {
+        Utilities.writeToConsole("snap! fstop = " + fstop +  " exposure = " + exposure);
     }    
     
     @Override
@@ -35,5 +40,10 @@ public class Camera implements ICamera {
     public String snap(String photoName) {
         Utilities.writeToConsole("snap! name = " + photoName);
         return photoName;
-    }    
+    }
+
+    @Override
+    public void migrateCamera(OldCamera oldCamera) {        
+        Utilities.writeToConsole("migrating camera!");
+    }
 }
