@@ -14,20 +14,24 @@ import org.springframework.stereotype.Component;
  * @author jerryamadon
  */
 @Component
-public class Camera {
+public class Camera implements ICamera {
     
+    @Override
     public void snap() {
         Utilities.writeToConsole("snap!");
     }    
     
+    @Override
     public void snap(int exposure) {
         Utilities.writeToConsole("snap! exposure = " + exposure);
     }    
     
+    @Override
     public void snapNight() {
         Utilities.writeToConsole("snap! (night)");
     }    
     
+    @Override
     public String snap(String photoName) {
         Utilities.writeToConsole("snap! name = " + photoName);
         return photoName;
