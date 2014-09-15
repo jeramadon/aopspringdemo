@@ -187,4 +187,16 @@ public class Logger {
         Utilities.writeToConsole("fstop: " + fstop + ", exposure: " + exposure);
         Utilities.writeToConsole("fstop, exposure argument action...");
     } 
+    
+    @Before("phoneCameraAllTarget() && fstopExposureArgumentAction(fstop, exposure)")
+    public void onPhoneCameraWithFstopExposureArgumentAction(double fstop, int exposure) {
+        Utilities.writeToConsole("fstop: " + fstop + ", exposure: " + exposure);
+        Utilities.writeToConsole("phone camera: fstop, exposure argument action...");
+    }
+    
+    //  pointcut directly in advice (non-reusable)
+    @After("within(de.ebf.aopspringdemo.camera.*) && @annotation(Deprecated)")
+    public void onCameraPackageDeprecated() {
+        Utilities.writeToConsole("in package, deprecated, inline advice...");
+    }
 }
