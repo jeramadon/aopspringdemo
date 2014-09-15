@@ -9,6 +9,7 @@ package de.ebf.aopspringdemo;
 import de.ebf.aopspringdemo.accessories.Lens;
 import de.ebf.aopspringdemo.camera.Camera;
 import de.ebf.aopspringdemo.camera.ICamera;
+import de.ebf.aopspringdemo.camera.ICoreCamera;
 import de.ebf.aopspringdemo.camera.OldCamera;
 import de.ebf.aopspringdemo.camera.PhoneCamera;
 import org.springframework.context.ApplicationContext;
@@ -37,6 +38,8 @@ public class App {
         phoneCamera.snap("Mosel");
         phoneCamera.snap(1000);        
         phoneCamera.snap(1.8, 2000);
+        
+        ((ICoreCamera)phoneCamera).powerOn();
     }
     
     private static void cameraActions_Tutorial_79() {
