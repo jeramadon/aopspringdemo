@@ -7,6 +7,7 @@
 package de.ebf.aopspringdemo;
 
 import de.ebf.aopspringdemo.utilities.Utilities;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
@@ -82,6 +83,10 @@ public class Logger {
     
     @Pointcut("args(Double, ..)")
     public void doubleArgumentAction() {        
+    }
+    
+    @Pointcut("args(fstop, exposure)")
+    public void fstopExposureArgumentAction(double fstop, int exposure) {        
     }
     
     @Before("cameraSnap()")
@@ -170,7 +175,16 @@ public class Logger {
     } 
     
     @Before("doubleArgumentAction()")
-    public void onDoubleArgumentAction() {
+    public void onDoubleArgumentAction(JoinPoint joinPoint) {
+        for (Object object: joinPoint.getArgs()) {
+            Utilities.writeToConsole("Argument: " + object + " (" + object.getClass() + ")");
+        }
         Utilities.writeToConsole("double argument action...");
+    } 
+    
+    @Before("fstopExposureArgumentAction(fstop, exposure)")
+    public void onFstopExposureArgumentAction(double fstop, int exposure) {
+        Utilities.writeToConsole("fstop: " + fstop + ", exposure: " + exposure);
+        Utilities.writeToConsole("fstop, exposure argument action...");
     } 
 }
